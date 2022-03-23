@@ -64,6 +64,7 @@ void copyFile(char *in, int len){
             if(in[i] == ' '){
                 flag = 1;
                 j = 0;
+                i++;
                 continue;
             }
             srcFile[j] = in[i];
