@@ -82,7 +82,7 @@ void copyFile(char *in, int len){
     while (c = fgetc(fSrc) != EOF) {
         fputc(c, fDst);
     }
-    printf("Finished copying the file\n")
+    printf("Finished copying the file\n");
     fclose(fSrc);
     fclose(fDst);
 }
