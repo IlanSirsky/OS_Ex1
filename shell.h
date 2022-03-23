@@ -12,8 +12,8 @@
 #include <sys/wait.h>
 
 void curr_dir();
-
-
+void dir_files();
+void changeCD(char*, int);
 
 
 
