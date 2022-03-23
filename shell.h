@@ -11,10 +11,10 @@
 #include <dirent.h>
 #include <sys/wait.h>
 
-void curr_dir();
-void dir_files();
+void currDir();
+void dirFiles();
 void changeCD(char*, int);
-
+void copyFile(char *, int);
 
 
 #endif

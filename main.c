@@ -10,7 +10,7 @@ int main()
 {
 
     char in[100];
-    curr_dir();
+    currDir();
     scanf("%[^\n]%*c", in);
     int len = strlen(in);
     // printf("%s\n", in);
@@ -31,7 +31,7 @@ int main()
         }
         else if (strncmp(in, "DIR", 3) == 0)
         {
-            dir_files();
+            dirFiles();
         }
         else if (strncmp(in, "CD", 2) == 0)
         {
@@ -39,6 +39,7 @@ int main()
         }
         else if (strncmp(in, "COPY", 4) == 0)
         {
+            copyFile(in, len);
         }
         else if (strncmp(in, "DELETE", 6) == 0)
         {
@@ -46,11 +47,14 @@ int main()
         else
         {
             // system(in);
-            int pid = fork();
-            if (pid == 0)
+            int pid = fork(); //forking a child process
+            if (pid < 0){
+                printf("Failed to fork\n");
+            }
+            else if (pid == 0)
             {
                 char *args[] = {in, NULL};
-                execvp(args[0], args);
+                execvp(args[0], args); //executing the child process
             }
             else
             {
@@ -58,7 +62,7 @@ int main()
             }
         }
         bzero(in, 100);
-        curr_dir();
+        currDir();
         scanf("%[^\n]%*c", in);
         len = strlen(in);
     }
