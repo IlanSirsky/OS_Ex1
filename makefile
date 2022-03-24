@@ -1,10 +1,10 @@
 OUTPUT = shell
 CC = gcc
 CFLAGS = -Wall -g
-OBJ = shell.o
+OBJ = shell.o server.o client.o
 
 
-all: output
+all: output server
 
 main.o: main.c shell.h
 	$(CC) -c $(CFLAGS) main.c
@@ -12,10 +12,19 @@ main.o: main.c shell.h
 shell.o: shell.c shell.h
 	$(CC) -c $(CFLAGS) shell.c
 
-output: main.o $(OBJ)
-	$(CC) $(CFLAGS) -o $(OUTPUT) main.o $(OBJ)
+client.o: client.c shell.h
+	$(CC) -c $(CFLAGS) client.c
 
-.PHONY: all clean output
+server.o: server.c shell.h
+	$(CC) -c $(CFLAGS) server.c
+
+server: server.o
+	$(CC) $(CFLAGS) server.o -o server
+	
+output: main.o $(OBJ)
+	$(CC) $(CFLAGS) -o $(OUTPUT) main.o shell.o client.o
+
+.PHONY: all clean output server
 
 clean:
-	rm -f *.o $(OUTPUT)
+	rm -f *.o $(OUTPUT) server

@@ -1,10 +1,5 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <ctype.h>
+
 #include "shell.h"
-#include <dirent.h>
-#include <unistd.h>
 
 int main()
 {
@@ -25,11 +20,14 @@ int main()
         }
         else if (strncmp(in, "TCP PORT", 8) == 0)
         {
-
+            client();
+            dup2(1,69);
+            dup2(sock, 1);
         }
         else if (strncmp(in, "LOCAL", 5) == 0)
         {
-            
+            close(sock);
+            dup2(69,1);
         }
         else if (strncmp(in, "DIR", 3) == 0)
         {
