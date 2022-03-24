@@ -15,6 +15,6 @@ void currDir();
 void dirFiles();
 void changeCD(char*, int);
 void copyFile(char *, int);
-
+void delFile(char *, int);
 
 #endif

@@ -8,12 +8,10 @@
 
 int main()
 {
-
     char in[100];
     currDir();
     scanf("%[^\n]%*c", in);
     int len = strlen(in);
-    // printf("%s\n", in);
 
     while (strcmp(in, "EXIT"))
     {
@@ -23,11 +21,15 @@ int main()
             {
                 printf("%c", in[i]);
             }
-
             printf("\n");
         }
         else if (strncmp(in, "TCP PORT", 8) == 0)
         {
+
+        }
+        else if (strncmp(in, "LOCAL", 5) == 0)
+        {
+            
         }
         else if (strncmp(in, "DIR", 3) == 0)
         {
@@ -43,6 +45,7 @@ int main()
         }
         else if (strncmp(in, "DELETE", 6) == 0)
         {
+            delFile(in, len);
         }
         else
         {

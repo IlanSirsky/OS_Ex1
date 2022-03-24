@@ -1,6 +1,6 @@
 #include "shell.h"
 
-void curr_dir()
+void currDir()
 {
     char cwd[PATH_MAX];
     if (getcwd(cwd, sizeof(cwd)) != NULL)
@@ -14,7 +14,7 @@ void curr_dir()
     }
 }
 
-void dir_files()
+void dirFiles()
 {
     DIR *d;
     struct dirent *dir;
@@ -80,10 +80,21 @@ void copyFile(char *in, int len){
     char c;
     FILE *fSrc = fopen(srcFile, "r");
     FILE *fDst = fopen(dstFile, "a");
-    while (c = fgetc(fSrc) != EOF) {
+    while ((c = fgetc(fSrc)) != EOF) {
         fputc(c, fDst);
     }
     printf("Finished copying the file\n");
     fclose(fSrc);
     fclose(fDst);
+}
+
+//The unlink function is a system call
+void delFile(char *in, int len){
+    char file[50];
+    bzero(file,50);
+    for (int i = 7; i < len; i++)
+    {
+        file[i-7] = in[i];
+    }
+    unlink(file);
 }
