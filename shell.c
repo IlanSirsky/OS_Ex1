@@ -96,5 +96,7 @@ void delFile(char *in, int len){
     {
         file[i-7] = in[i];
     }
-    unlink(file);
+    if(unlink(file)){
+        printf("unlink failed");
+    };
 }
